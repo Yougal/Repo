@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	 xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/stream 
+		http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.0.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/file 
+		http://www.springframework.org/schema/integration/file/spring-integration-file-4.0.xsd
+		http://www.springframework.org/schema/integration 
+		http://www.springframework.org/schema/integration/spring-integration-4.0.xsd 
+		http://www.springframework.org/schema/integration/xml 
+		http://www.springframework.org/schema/integration/xml/spring-integration-xml-4.0.xsd">
+
+	<int-file:inbound-channel-adapter directory="/Users/yougal.bisht/test/xml-inbound/" filename-pattern="*.xml" id="file-inbound-channel" channel="fileChannel"/>
+
+	<int:channel id="fileChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int-file:file-to-string-transformer input-channel="fileChannel" output-channel="xml-string-channel"/>
+	
+	<int:channel id="xml-string-channel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int-xml:xpath-router input-channel="xml-string-channel">
+	 	<int-xml:xpath-expression expression="/shiporder/shipto/country" />
+	 	<int-xml:mapping value="Norway" channel="norwayChannel" />
+ 		<int-xml:mapping value="USA" channel="usaChannel" />
+	</int-xml:xpath-router>
+
+	<int:channel id="norwayChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int:recipient-list-router input-channel="norwayChannel" >
+		<int:recipient channel="sysoutChannel"/>
+		<int:recipient channel="norwayFileChannel"/>
+	</int:recipient-list-router>
+	
+	<int:channel id="usaChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int:channel id="sysoutChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int:channel id="norwayFileChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int-stream:stdout-channel-adapter id="sysoutAdapter" channel="sysoutChannel"/>
+	
+	<int-file:outbound-channel-adapter directory="/Users/yougal.bisht/test/xml-outbound/norway" id="file-norway-output-adapter" channel="norwayFileChannel"/>
+	
+	<int-file:outbound-channel-adapter directory="/Users/yougal.bisht/test/xml-outbound/usa" id="file-usa-output-adapter" channel="usaChannel"/>
+	
+	<int:poller id="defaultPoller" default="true" max-messages-per-poll="5" fixed-rate="200" />
+	
+</beans>

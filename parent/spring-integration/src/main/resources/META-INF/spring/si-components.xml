@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-4.0.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.0.xsd">
+
+
+	<!-- <int:channel id="inputChannel"> -->
+	<!-- <int:queue capacity="2" /> -->
+	<!-- </int:channel> -->
+
+<!-- 	<int:publish-subscribe-channel id="inputChannel"> -->
+<!-- 	</int:publish-subscribe-channel> -->
+
+
+<!-- 	<int-stream:stdin-channel-adapter -->
+<!-- 		channel="inputChannel" id="stdin-producer"> -->
+<!-- 		<int:poller fixed-rate="2000"></int:poller> -->
+<!-- 	</int-stream:stdin-channel-adapter> -->
+
+
+<!-- 	<int-stream:stdout-channel-adapter -->
+<!-- 		channel="inputChannel" id="stdout-consumer1" /> -->
+
+<!-- 	<int-stream:stdout-channel-adapter -->
+<!-- 		channel="inputChannel" id="stdout-consumer2" /> -->
+
+<!-- 	<int:poller id="defaultPoller" default="true" -->
+<!-- 		max-messages-per-poll="5" fixed-rate="200" /> -->
+
+
+	<int-file:inbound-channel-adapter directory="/Users/yougal.bisht/test/inbound/" id="file-inbound-channel" channel="fileChannel"/>
+
+	<int:channel id="fileChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<bean id="fileNameFilterBean" class="com.yougal.si.filters.FileNameFilter"/>
+	
+	<int:filter id="fileNameFilter" input-channel="fileChannel" output-channel="filteredFileChannel" ref="fileNameFilterBean" discard-channel="discardChannel"/>
+	
+	<int:channel id="filteredFileChannel">
+		<int:queue capacity="2" />
+	</int:channel>
+	
+	<int-file:outbound-channel-adapter directory="/Users/yougal.bisht/test/outbound" id="file-output-adapter" channel="filteredFileChannel"/>
+	
+	<int:channel id="discardChannel"/>
+	
+	<int-stream:stdout-channel-adapter channel="discardChannel"/>
+	
+	
+	<int:poller id="defaultPoller" default="true" max-messages-per-poll="5" fixed-rate="200" />
+</beans>
