@@ -52,7 +52,7 @@ public class RentrantLockTest {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		RentrantLockTest rlt=  new RentrantLockTest();
 		
 		Thread t1 = new Thread(new Runnable() {
@@ -77,7 +77,8 @@ public class RentrantLockTest {
 		
 		t1.start();
 		t2.start();
-		
+		t1.join();
+		t2.join();
 		rlt.display();
 		
 	}
