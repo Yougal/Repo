@@ -1,6 +1,6 @@
 package com.yougal;
 
-//A Java program to find a peak element element using divide and conquer
+//Program to find a peak element element using divide and conquer
 
 class PeakElement
 {
@@ -32,7 +32,7 @@ class PeakElement
  // Driver method
  public static void main (String[] args)
  {
-     int arr[] = {10, 20, 15, 2, 23, 90, 67};
+     int arr[] = {70, 20, 30, 2, 23, 40, 37};
      int n = arr.length;
      System.out.println("Index of a peak point is " +
                          findPeak(arr, n));
