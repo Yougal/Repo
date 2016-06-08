@@ -1,24 +1,18 @@
 package com.yougal.java8;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class LambdaFunctions {
 	
 	
 	public static void main(String[] args) {
-		Function<String,Void> f = (a)->{
-											System.out.println(a);
-											return null;
-				};
-				
 		MyIntf inf = (Person p1,Person p2)-> {
 									if(p1.birthday.compareTo(p2.birthday)>0){
 										return p1;
@@ -36,7 +30,14 @@ public class LambdaFunctions {
 									}
 								});
 								
-		Arrays.sort(new Person[5], Person::compareByAge);
+	//	Arrays.sort(new Person[5], );
+		
+		Function<Person, Integer> x = Person::compareByAge;
+		Supplier<Person> supplier = Person::new;
+		Person person = supplier.get();
+		Function<Person, Integer> f = person::compareTo;
+		//p.get();
+		System.out.println(x);
 	}
 	
 	
@@ -51,10 +52,9 @@ interface MyIntf{
 	
 	public Person checkOld (Person p1, Person p2);
 	
-	
 }
 
-class Person {
+class Person implements Comparable<Person> {
 
     enum Sex {
         MALE, FEMALE
@@ -65,8 +65,32 @@ class Person {
     Sex gender;
     String emailAddress;
     
-    public static int compareByAge(Person a, Person b) {
-        return a.birthday.compareTo(b.birthday);
+    public int compareByAge() {
+        return 0;//a.birthday.compareTo(b.birthday);
     }
+    
+    public int get() {
+    	return 0;
+	}
+
+	@Override
+	public int compareTo(Person o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * @return the emailAddress
+	 */
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	/**
+	 * @param emailAddress the emailAddress to set
+	 */
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
 }

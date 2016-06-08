@@ -10,11 +10,11 @@ public class ListProxyTest {
 	
 	public static void main(String[] args) {
 		List<String> myList=  new ArrayList<>();
-		Object proxy = Proxy.newProxyInstance(
+		List proxy = (List)Proxy.newProxyInstance(
 				  ListProxy.class.getClassLoader(),
-				  new Class[] { Map.class },
+				  new Class[] { List.class },
 				  new ListProxy(myList));
-		//proxy.add("Yougal");
+		proxy.add("Yougal");
 		
 	}
 }
