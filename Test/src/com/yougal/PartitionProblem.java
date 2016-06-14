@@ -1,9 +1,6 @@
 package com.yougal;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 public class PartitionProblem {
 
@@ -11,8 +8,9 @@ public class PartitionProblem {
 	    {
 		        PartitionProblem solution = new PartitionProblem();
 		        
-		        int[] set = {45,15,5,15,20};
-		        
+		       // int[] set = {15,5,15,20,45};
+		        int[] set = {2,3,7,8,10};
+		        Arrays.sort(set);
 		        System.out.println(solution.partitionExists(set));
 		}
 
@@ -21,28 +19,60 @@ public class PartitionProblem {
 		if(sum%2!=0){
 			return false;
 		}
-		List<Integer> result = new ArrayList<Integer>();
-		canAddNumber(set,sum/2,0,result);
-		System.out.println(result);
-		return true;
+		sum = sum/2;
+		boolean solution[][] = new boolean[set.length][sum+1];
+		for(int j =0 ;j<set.length;j++){
+			solution[j][0]=true;
+		}
+		for (int i = 0; i < set.length; i++) {
+			for (int j = 1; j<=sum; j++) {
+				if(j<set[i]){
+					if(i-1>=0){
+						solution[i][j] = solution[i-1][j];
+					}else{
+						solution[i][j] = false;
+					}
+				}else if(set[i]==j){
+					solution[i][j]=true;
+				}else{
+					if(i-1>=0){
+						solution[i][j] = solution[i-1][j-set[i]];	
+					}else{
+						solution[i][j] = false;
+					}
+					
+				}
+			}
+		}
+		printElements(solution,set,sum);
+		return solution[set.length-1][sum];
+	}
+
+	private void printElements(boolean[][] solution, int[] set, int sum) {
+		StringBuilder s = new StringBuilder("{");
+		int i=set.length-1;
+		if(solution[i][sum]){
+			i--;
+			while(i>=0 && sum>0){
+				if(solution[i][sum]){
+					s.append(set[i]+", ");
+					sum = sum-set[i];
+					i--;
+					continue;
+				}if(solution[i][sum-set[i+1]] ){
+					s.append(set[i]+", ");
+					sum = sum-set[i+1];
+					i--;
+					continue;
+				}else{
+					break;
+				}
+			}
+		}
+		s.append("}");
+		System.out.println(s.toString());
 	}
 	
-	public boolean canAddNumber(int []arry, int sum,int index, List<Integer> set){
-		if(sum<0 || index>=arry.length){
-			return false;
-		}
-		if(sum==0){
-			return true;
-		}
-		
-		boolean result = canAddNumber(arry, sum-arry[index], index+1,set);
-		if(result){
-			set.add(arry[index]);
-		}else{
-			result = canAddNumber(arry, sum, index+1,set);
-		}
-		return result;
-	}
 	
 	
 	
