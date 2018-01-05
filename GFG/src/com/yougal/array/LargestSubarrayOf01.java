@@ -2,13 +2,19 @@ package com.yougal.array;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 
+ * http://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/
+ * 
+ * @author yougal.bisht
+ *
+ */
 public class LargestSubarrayOf01 {
 
 	/* Driver program to test the above functions */
 	public static void main(String[] args) {
 		LargestSubarrayOf01 sub = new LargestSubarrayOf01();
-		int arr[] = { 0, 0, 1, 1, 0};
+		int arr[] = { 1,0, 1, 1, 1, 0,0};
 		int size = arr.length;
 
 		sub.findSubArray(arr, size);
