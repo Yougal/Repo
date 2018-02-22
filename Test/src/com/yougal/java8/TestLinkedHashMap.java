@@ -14,6 +14,9 @@ public class TestLinkedHashMap {
 		System.out.println("hashmap: " +hashMap);
 		System.out.println(hashMap.get("A"));
 		
+		TestFunctionalInterface x = ()->System.out.println("Yougal");
+		x.doSomething();
+		
 		
 	}
 }
