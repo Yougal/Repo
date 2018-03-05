@@ -1,11 +1,18 @@
 package com.yougal.array;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * 
+ * https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
+ * 
+ * @author yougal.bisht
+ *
+ */
 public class MinNumberOfJump {
 
 	public static void main(String[] args) {
-		int arr[] = {1, 3, 6, 1, 0, 9};
+		int arr[] = {1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
 		System.out.println(minJumps(arr));
 	}
 
