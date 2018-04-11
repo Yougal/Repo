@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class StockSpan {
 
 	public static void main(String[] args) {
-		int prices[] = new int[] {100, 80, 60, 90, 60, 75, 85};
+		int prices[] = new int[] {10, 4, 5, 90, 120, 80};
 		int stockSpan[] = calculateStockSpan(prices);
 		System.out.println(Arrays.toString(stockSpan));
 	}
@@ -39,7 +39,7 @@ public class StockSpan {
 				while(!indexStk.isEmpty() && prices[i]>=prices[indexStk.peek()]){
 					indexStk.pop();
 				}
-				stockSpan[i]=indexStk.isEmpty()?1: i-indexStk.peek();
+				stockSpan[i]=indexStk.isEmpty()?i+1: i-indexStk.peek();
 				indexStk.push(i);
 			}
 		}
