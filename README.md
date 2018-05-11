@@ -1,3 +1,3 @@
 # Repo
 
-Practice Programs
+Practice Programs and sample projects
