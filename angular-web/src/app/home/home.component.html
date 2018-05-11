@@ -1,0 +1,22 @@
+<div class="container color-dark">
+	<div class="col">
+		<p>Add a category of interest</p>
+	</div>
+	<div class="col">
+		<p>Your Chosen Category({{itemCount}})</p>
+	</div>
+</div>
+<div class="container color-light" [@cats]="cat.length">
+	<div class="col">
+		<p>Use below form to Add Category</p>
+		<form>
+			<input type="text" name="category" class="txt" placeholder="Choose Your Category..." [(ngModel)]="catTxt">
+			<input type="submit" class="btn" [value]="btnTxt" (click)="addItem()"/>
+		</form>
+	</div>
+	<div class="col">
+		<p class="cat-container" *ngFor="let category of cat" (click)='removeItem(index)'>
+			{{category}}		
+		</p>
+	</div>
+</div>
