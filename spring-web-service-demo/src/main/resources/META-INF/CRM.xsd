@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.yougal.com/schema/CRM" xmlns:tns="http://www.yougal.com/schema/CRM" elementFormDefault="qualified">
+		
+		<xs:element name="CustomerRequest">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="id" type="tns:CustomerIdType"></xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:element name="CustomerResponse">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="customer" type="tns:Customer"></xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:simpleType name="CustomerIdType">
+			<xs:restriction base="xs:string">
+				<xs:length value="5"></xs:length>
+				<xs:pattern value="[0-9]*"></xs:pattern>
+			</xs:restriction>
+		</xs:simpleType>
+		
+		<xs:complexType name="Customer">
+			<xs:sequence>
+				<xs:element name="custId" type="tns:CustomerIdType"></xs:element>
+				<xs:element name="name" type="xs:string"></xs:element>
+				<xs:element name="email" type="xs:string"></xs:element>
+				<xs:element name="notes" type="xs:string"></xs:element>
+				<xs:element name="phone" type="xs:string"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		
+</xs:schema>

@@ -1,0 +1,12 @@
+<p>
+  parent Counter = {{ parentCounter }}<br/>
+  child Counter = {{ childCounter }}<br/>
+  <a href="#" (click)="onClickParent()">Increment Parent Counter</a><br/>
+  
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <app-child [parentCounter]="parentCounter"  (result)="ngOnChanges($event)"></app-child>
+</p>
