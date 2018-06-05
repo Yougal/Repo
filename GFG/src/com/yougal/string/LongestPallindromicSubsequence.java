@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class LongestPallindromicSubsequence {
 
 	public static void main(String[] args) {
-		String input = "BBABCBCAB";
+		String input = "BBABC";
 		int a[][] = new int[input.length()][];
 		for (int i = 0; i < a.length; i++) {
 			 a[i]= new int[input.length()];

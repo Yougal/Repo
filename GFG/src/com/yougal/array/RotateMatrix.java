@@ -1,6 +1,13 @@
 package com.yougal.array;
 
 import java.util.Arrays;
+/**
+ * 
+ * https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
+ * 
+ * @author yougal.bisht
+ *
+ */
 
 public class RotateMatrix {
 

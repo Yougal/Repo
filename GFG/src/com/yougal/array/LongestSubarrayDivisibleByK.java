@@ -77,7 +77,7 @@ public class LongestSubarrayDivisibleByK {
 	     
 	    for (int i = 0; i < arr.length; i++) {
 	        curr_sum += arr[i];
-	        mod_arr[i] = ((curr_sum % k) + k) % k;        
+	        mod_arr[i] = curr_sum % k;        
 	    }    
 	     
 	    for (int i = 0; i < arr.length; i++){
