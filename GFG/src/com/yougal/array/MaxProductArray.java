@@ -4,7 +4,7 @@ public class MaxProductArray {
 	
 	 public static void main (String[] args) {
 		 
-	        int arr[] = {1, -2, 7,8,-1,-9,891};
+	        int arr[] = {1, -2, 7,8,-1};
 	        System.out.println("Maximum Sub array product is "+
 	                            maxSubarrayProduct(arr));
 	 }
@@ -29,7 +29,6 @@ public class MaxProductArray {
 				productSoFar1 = productSoFar1*productSoFar2 * negativeNumber * arr[i];
 				flip=1;
 				maxProduct=Math.max(maxProduct, productSoFar1);
-				productSoFar2=1;
 			}else {
 				productSoFar1=1;
 				productSoFar2=1;
