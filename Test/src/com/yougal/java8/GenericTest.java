@@ -30,7 +30,7 @@ public class GenericTest {
 
 	private static class AnimalDoctorGeneric {
 		public void addAnimal(List<? super Eagle> animals) {
-			animals.add(new Bird()); 
+			//animals.add(new Bird()); 
 		}
 	}
 
