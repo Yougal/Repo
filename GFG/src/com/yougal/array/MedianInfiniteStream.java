@@ -66,6 +66,8 @@ public class MedianInfiniteStream {
 			}
 		}
 		
+		System.out.println(elementLessThan);
+		System.out.println(elementGreaterThan);
 	}
 
 	private static void shuffleAndInsert(PriorityQueue<Integer> smallerHeap,PriorityQueue<Integer> biggerHeap, int element ) {

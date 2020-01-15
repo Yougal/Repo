@@ -6,7 +6,10 @@ package com.yougal.dp;
  * https://www.geeksforgeeks.org/find-maximum-possible-stolen-value-houses/
  * 
  * Find maximum possible stolen value from houses
-	There are n houses build in a line, each of which contains some value in it. A thief is going to steal the maximal value of these houses, but he can’t steal in two adjacent houses because owner of the stolen houses will tell his two neighbour left and right side. What is the maximum stolen value.
+	There are n houses build in a line, each of which contains some value in it. 
+	A thief is going to steal the maximal value of these houses, 
+	but he can’t steal in two adjacent houses because owner of the stolen houses will tell his two 
+	neighbor left and right side. What is the maximum stolen value.
 	Examples:
 	
 	Input  : hval[] = {6, 7, 1, 3, 8, 2, 4}
@@ -31,21 +34,27 @@ public class MaxPossibleStolenValue {
 		System.out.println(maxValue);
 	}
 
-	private static int getMaxValueTheifCanStole(int[] hval) {
-		int dp[] = new int[hval.length];
-		if(hval.length==0) {
+	private static int getMaxValueTheifCanStole(int[] a) {
+		int dp[] = new int[a.length];
+		if(a.length==0) {
 			return 0;
-		}else if(hval.length>=2) {
-			dp[0]=hval[0];
-			dp[1]=Math.max(hval[0], hval[1]);
-		}else {
-			dp[0]=hval[0];
+		}else if(a.length>=3) {
+			if(a.length>=1) {
+				dp[0]=a[0];
+			}
+			if(a.length>=2) {
+				dp[1]=Math.max(a[0], a[1]);
+			}
+			if(a.length>=3) {
+				dp[2]=Math.max(a[0]+a[2], a[1]);
+			}
 		}
-		for(int i= 2;i<hval.length;i++) {
-			dp[i] = Math.max(hval[i]+dp[i-2], dp[i-1]);
+		for(int i= 3;i<a.length;i++) {
+			int val = Math.max(dp[i-3]+a[i], dp[i-2]+a[i]);
+			dp[i] = Math.max(dp[i-1],val);
 		}
 		
-		return dp[hval.length-1];
+		return dp[a.length-1];
 	}
 	
 }

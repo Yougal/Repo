@@ -1,4 +1,4 @@
-package com.yougal.array;
+ package com.yougal.array;
 
 public class MaxProductArray {
 	

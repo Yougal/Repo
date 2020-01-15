@@ -1,4 +1,9 @@
 package com.yougal.array;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 
  * 
@@ -23,7 +28,20 @@ public class PrintUniqueRows {
 	}
 
 	private static void findUniqueRows(int[][] m) {
-			
+		Set<Integer>	map = new HashSet<Integer>();
+		for(int i=0;i<m.length;i++) {
+
+			int sum=0;
+			int p=0;
+			for(int j=m[i].length-1;j>0;j--) {
+				sum+=Math.pow(2, p++)*m[i][j];
+			}
+			if(!map.contains(sum)) {
+				map.add(sum);
+				System.out.println(Arrays.toString(m[i]));
+			}
+		
+		}
 	}
 	
 }
