@@ -9,7 +9,7 @@ public class FindElementInRowColSortedMatrix {
 		                {27, 29, 37, 48},
 		                {32, 33, 39, 50}
 		              };
-		searchMat(mat,49);
+		searchMat(mat,20);
 		
 		
 	}

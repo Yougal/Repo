@@ -27,6 +27,7 @@ public class MinNumberOfJump {
 				}
 			}
 		}
+		System.out.println(Arrays.toString(jump));
 		return jump[arr.length-1];
 	}
 	

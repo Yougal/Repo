@@ -14,9 +14,9 @@ import java.util.Stack;
 public class Celebrity {
 
 	static int MATRIX[][] = { 
-								{ 0, 0, 0, 0 }, 
+								{ 1, 0, 0, 0 }, 
 								{ 1, 0, 0, 0 },
-					            { 1, 0, 0, 0 },
+					            { 0, 0, 0, 0 },
 					            { 1, 0, 0, 0 } 
             
 							};

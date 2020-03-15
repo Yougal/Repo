@@ -73,7 +73,7 @@ public class MaximumOfAllContinousSubArray {
 	}
 	
 	public static void main(String[] args) {
-	    int arr[] = {12, 2, 1, 90, 57, 89, 56};
+	    int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 1};
 	    int n = arr.length;
 	    int k = 3;
 	    printKMax(arr, n, k);

@@ -23,6 +23,7 @@ public class MaximumSumIncreasingSubsequence {
 					maxValue = Math.max(maxValue, temp[i]);
 				}
 			}
+			System.out.println(Arrays.toString(temp));
 		}
 		
 		System.out.println(Arrays.toString(temp));

@@ -1,7 +1,15 @@
 package com.yougal.binaryTree;
 
 import java.util.Stack;
-
+/**
+ * 
+ * 
+ * https://www.geeksforgeeks.org/find-a-pair-with-given-sum-in-bst/
+ * 
+ * 
+ * @author yougal.bisht
+ *
+ */
 public class FindPairWithGivenSum {
 
 	public static void main(String[] args) {

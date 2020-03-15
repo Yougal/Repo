@@ -1,5 +1,7 @@
 package com.yougal.dp;
 
+import java.util.Arrays;
+
 public class LongestCommonSubstring {
 
 	
@@ -26,6 +28,7 @@ public class LongestCommonSubstring {
 				max= Math.max(max, result[i][j]);
 			}
 		}
+		System.out.println(Arrays.deepToString(result));
 		return max;
 	}
 }
