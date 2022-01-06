@@ -12,7 +12,7 @@ public class BuySellStock {
 		 BuySellStock stock = new BuySellStock();
 	         
 	        // stock prices on consecutive days
-	        int price[] = {100, 180, 260, 310, 40, 535, 695};
+	        int price[] = {7,1,5,3,6,4};
 	        int n = price.length;
 	 
 	        // function call
@@ -22,7 +22,7 @@ public class BuySellStock {
 	private void stockBuySell(int[] price, int n) {
 		List<Entry<Integer,Integer>> result =  new ArrayList<Entry<Integer,Integer>>();
 		for(int i=0;i<n;i++){
-			while(i<n-1 && price[i]>=price[i+1]){
+			while(i<n-1 && price[i+1]<=price[i]){
 				i++;
 			}
 			if(i==n-1){
